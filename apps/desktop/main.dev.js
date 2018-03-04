@@ -69,7 +69,6 @@ const processes = [
       '--bitcoin.node=neutrino',
       '--neutrino.connect=162.243.165.21',
       '--debuglevel=info',
-      '--no-macaroons',
       '--noencryptwallet',
     ],
   },
