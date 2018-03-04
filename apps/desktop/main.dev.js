@@ -12,6 +12,8 @@ import os from 'os'
 import fs from 'fs'
 import grpc from 'grpc'
 
+process.env.GRPC_SSL_CIPHER_SUITES = 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384'
+
 app.commandLine.appendSwitch('remote-debugging-port', '9997')
 app.commandLine.appendSwitch('host-rules', 'MAP * 127.0.0.1')
 
@@ -63,14 +65,11 @@ const processes = [
   {
     name: 'lnd',
     args: [
-      isDev ? '' : '--bitcoin.active',
-      isDev ? '' : '--bitcoin.node=neutrino',
-      isDev ? '' : '--configfile=../lnd.conf',
-      isDev ? '' : '--bitcoin.testnet',
-      isDev ? '' : '--neutrino.connect=btcd0.lightning.computer:18333',
-      isDev ? '' : '--neutrino.connect=127.0.0.1:18333',
-      isDev ? '' : '--debuglevel=info',
-      isDev ? '' : '--autopilot.active',
+      '--bitcoin.active',
+      '--bitcoin.node=neutrino',
+      '--neutrino.connect=162.243.165.21',
+      '--debuglevel=info',
+      '--no-macaroons',
       '--noencryptwallet',
     ],
   },
